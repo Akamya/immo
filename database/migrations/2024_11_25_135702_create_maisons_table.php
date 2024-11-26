@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('maisons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
+            $table->string('address');
+            $table->decimal('price', 10, 2);
+            $table->integer('rooms');
+            $table->decimal('size', 10, 2)  ;
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
