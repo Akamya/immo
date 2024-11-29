@@ -13,7 +13,7 @@ class HomepageController extends Controller
     public function index()
     {
         // Récupère toutes les maisons et ses images grâce à la relation des modèles
-        $maisons = Maison::with('images')->get();
+        $maisons = Maison::with('images')->orderBy('created_at')->get();
 
         // Rendu de la vue avec les données nécessaires
         return Inertia::render('Homepage/Index', [
