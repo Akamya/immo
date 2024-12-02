@@ -63,4 +63,48 @@ class PostsController extends Controller
 
         return redirect()->back()->banner('Informations mises à jour avec succès.');
     }
+
+    public function update(Request $request, $id)
+{
+    // Validation des données
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'address' => 'required|string|max:255',
+        'rooms' => 'required|integer',
+        'size' => 'required|numeric',
+        'description' => 'nullable|string',
+        // Ajouter d'autres règles de validation selon tes besoins
+    ]);
+
+    // Recherche la maison et met à jour les informations
+    $maison = Maison::findOrFail($id);
+    $maison->update([
+        'title' => $request->title,
+        'price' => $request->price,
+        'address' => $request->address,
+        'rooms' => $request->rooms,
+        'size' => $request->size,
+        'description' => $request->description,
+        // Ajouter d'autres champs à mettre à jour
+    ]);
+
+    return redirect()->route('houses.index')->with('success', 'Maison mise à jour avec succès!');
+}
+
+
+    public function edit($id)
+{
+    $maison = Maison::findOrFail($id); // Recherche la maison par ID
+    return view('houses.edit', compact('maison')); // Retourne la vue avec la maison à modifier
+}
+
+public function destroy($id)
+{
+    $maison = Maison::findOrFail($id);
+    $maison->delete(); // Supprime la maison
+
+    return redirect()->route('houses.index')->with('success', 'Maison supprimée avec succès!');
+}
+
 }

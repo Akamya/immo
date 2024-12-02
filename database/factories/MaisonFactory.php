@@ -25,7 +25,7 @@ class MaisonFactory extends Factory
             'rooms' => fake()->numberBetween(1, 10), // Nombre de pièces entre 1 et 10
             'size' => fake()->randomFloat(2, 30, 300), // Taille entre 30 et 300 m²
             'description' => fake()->text(200), // Description de 200 caractères
-            'created_at' => fake()->dateTimeBetween('-2 months', '+ 1 month'),
+            'created_at' => fake()->dateTimeBetween('-2 months', 'now'),
             'user_id' => User::get()->random()->id,
         ];
     }

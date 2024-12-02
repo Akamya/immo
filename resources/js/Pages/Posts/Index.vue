@@ -1,5 +1,6 @@
 <script setup>
 import Homepage from "@/Layouts/Homepage.vue";
+import Footer from "@/Components/Footer.vue";
 import { useForm } from "@inertiajs/vue3";
 
 defineExpose({
@@ -31,7 +32,7 @@ const form = useForm({
 
                     <!-- Formulaire -->
                     <form
-                        @submit.prevent="form.post(route('PostsStore'))"
+                        @submit.prevent="form.post(route('posts.store'))"
                         enctype="multipart/form-data"
                         class="space-y-6"
                     >
@@ -210,4 +211,5 @@ const form = useForm({
             </div>
         </div>
     </Homepage>
+    <Footer></Footer>
 </template>

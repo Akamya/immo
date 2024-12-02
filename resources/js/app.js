@@ -16,7 +16,6 @@ createInertiaApp({
             `./Pages/${name}.vue`,
             import.meta.glob("./Pages/**/*.vue")
         ).then((module) => {
-            // Définit le layout par défaut si non spécifié
             const page = module.default;
             page.layout = page.layout || Homepage;
             return page;
