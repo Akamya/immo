@@ -89,14 +89,18 @@ class PostsController extends Controller
         // Ajouter d'autres champs à mettre à jour
     ]);
 
-    return redirect()->route('houses.index')->with('success', 'Maison mise à jour avec succès!');
+    return redirect()->route('Homepage')->with('success', 'Maison mise à jour avec succès!');
 }
 
 
     public function edit($id)
 {
     $maison = Maison::findOrFail($id); // Recherche la maison par ID
-    return view('houses.edit', compact('maison')); // Retourne la vue avec la maison à modifier
+    return Inertia::render('Posts/Edit', [
+        'maison' => $maison,
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
 }
 
 public function destroy($id)
