@@ -18,7 +18,7 @@ const props = defineProps({
 // Initialisation du formulaire avec les données existantes
 const form = useForm({
     title: props.maison.title,
-    image: null, // L'image sera réinitialisée, car elle nécessite un nouveau fichier
+    image: props.maison.image,
     address: props.maison.address,
     price: props.maison.price,
     rooms: props.maison.rooms,
@@ -41,7 +41,7 @@ const form = useForm({
                     <!-- Formulaire -->
                     <form
                         @submit.prevent="
-                            form.post(route('posts.update', props.maison.id))
+                            form.put(route('posts.update', props.maison.id))
                         "
                         enctype="multipart/form-data"
                         class="space-y-6"
