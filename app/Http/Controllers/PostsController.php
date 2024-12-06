@@ -104,7 +104,7 @@ public function destroy($id)
     $maison = Maison::findOrFail($id);
     $maison->delete(); // Supprime la maison
 
-    return redirect()->route('houses.index')->with('success', 'Maison supprimée avec succès!');
+    return redirect()->route('Homepage')->with('success', 'Maison supprimée avec succès!');
 }
 
 }
