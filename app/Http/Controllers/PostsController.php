@@ -66,6 +66,7 @@ class PostsController extends Controller
 
     public function update(Request $request, $id)
 {
+    // dd($request);
     // Validation des données
     $request->validate([
         'title' => 'required|string|max:255',
@@ -74,8 +75,11 @@ class PostsController extends Controller
         'rooms' => 'required|integer',
         'size' => 'required|numeric',
         'description' => 'nullable|string',
+        'image' => 'nullable|file|image',
         // Ajouter d'autres règles de validation selon tes besoins
     ]);
+
+
 
     // Recherche la maison et met à jour les informations
     $maison = Maison::findOrFail($id);
@@ -88,6 +92,19 @@ class PostsController extends Controller
         'description' => $request->description,
         // Ajouter d'autres champs à mettre à jour
     ]);
+
+    if($request->hasFile('image')){
+        $imagePath = $request->file('image')->store('images', 'public');
+        $maison->update([
+            'image' => $imagePath,
+        ]);
+        $image = Image::create([
+            'maison_id' => $maison->id,
+            'path' => $imagePath,
+        ]);
+    }
+
+
 
     return redirect()->route('Homepage')->with('success', 'Maison mise à jour avec succès!');
 }

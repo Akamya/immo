@@ -57,7 +57,7 @@ defineProps({
                     :title="maison.title"
                     :images="maison.images"
                     :price="maison.price"
-                    :adress="maison.adress"
+                    :address="maison.address"
                     :rooms="maison.rooms"
                     :size="maison.size"
                     :description="maison.description"

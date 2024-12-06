@@ -13,7 +13,7 @@ const props = defineProps({
     price: {
         type: Number,
     },
-    adress: {
+    address: {
         type: String,
     },
     rooms: {
